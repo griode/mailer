@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mailer API - Documentation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Mailer API</h1>
+    <p>Envoyez des mails facilement avec notre API basée sur <strong>nodemailer</strong> et le service <strong>Gmail</strong>.</p>
+  </header>
+
+  <section id="introduction">
+    <h2>Introduction</h2>
+    <p><strong>Mailer</strong> est une API simple pour envoyer des mails. Le module utilisé est <strong>nodemailer</strong> et le service par défaut est <strong>Gmail</strong>. Pour utiliser Gmail avec cette API, vous devez créer un mot de passe d'application via le lien suivant :</p>
+    <a href="https://myaccount.google.com/u/1/apppasswords" target="_blank">Créer un mot de passe d'application Gmail</a>
+  </section>
+
+  <section id="environment">
+    <h2>Variables d'environnement</h2>
+    <p>Vous devez configurer les variables d'environnement suivantes pour que l'API fonctionne correctement :</p>
+    <ul>
+      <li><strong>API_KEY</strong> : "votre clé api"</li>
+    </ul>
+  </section>
+
+  <section id="routes">
+    <h2>Router</h2>
+    <p><strong>POST</strong> <code>/mailer</code></p>
+    <p>Envoyez une requête POST avec les informations suivantes dans les headers :</p>
+    <ul>
+      <li><strong>mailerKey</strong> : La clé API pour authentifier la requête</li>
+      <li><strong>from</strong> : L'adresse e-mail de l'expéditeur</li>
+      <li><strong>authpass</strong> : Le mot de passe de l'application Gmail</li>
+      <li><strong>service</strong> : Service de mail (par exemple : "gmail")</li>
+    </ul>
+  </section>
+
+  <section id="example">
+    <h2>Exemple de code</h2>
+    <h3>JavaScript</h3>
+    <pre><code class="language-javascript">
+// Exemple d'envoi de requête POST vers l'API Mailer
+const axios = require('axios');
+
+const options = {
+  method: 'POST',
+  url: 'https://mailer-lyart.vercel.app/mailer',
+  headers: {
+    'mailerKey': 'votre_clé_api',
+    'from': 'votre_email@gmail.com',
+    'authpass': 'votre_mot_de_passe_application',
+    'service': 'gmail'
+  },
+  data: {
+    to: 'destinataire@example.com',
+    subject: 'Sujet du mail',
+    text: 'Contenu du message'
+  }
+};
+
+axios.request(options)
+  .then(response => {
+    console.log('Email envoyé avec succès !', response.data);
+  })
+  .catch(error => {
+    console.error('Erreur lors de l\'envoi de l\'email :', error);
+  });
+    </code></pre>
+
+    <h3>Python</h3>
+    <pre><code class="language-python">
+import requests
+
+url = 'https://mailer-lyart.vercel.app/mailer'
+headers = {
+    'mailerKey': 'votre_clé_api',
+    'from': 'votre_email@gmail.com',
+    'authpass': 'votre_mot_de_passe_application',
+    'service': 'gmail'
+}
+
+data = {
+    'to': 'destinataire@example.com',
+    'subject': 'Sujet du mail',
+    'text': 'Contenu du message'
+}
+
+response = requests.post(url, headers=headers, json=data)
+
+if response.status_code == 200:
+    print('Email envoyé avec succès !', response.json())
+else:
+    print('Erreur lors de l\'envoi de l\'email :', response.status_code, response.text)
+    </code></pre>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Mailer API</p>
+  </footer>
+</body>
+</html>

@@ -14,6 +14,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Spécifier le répertoire des fichiers HTML
+app.use(express.static(path.join(__dirname, 'views')));
+
 app.use('/mailer', mailerRouter);
 app.use('/', indexRouter);
 
