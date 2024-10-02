@@ -1,7 +1,6 @@
 var express = require('express');
 const { sendMail } = require('../services/sendMail');
 var router = express.Router();
-require('dotenv').config()
 
 // send email
 router.post('/', async function (req, res) {
