@@ -6,15 +6,14 @@ ce projet et nodemailer et le service utiliser est gmail.
 https://myaccount.google.com/u/1/apppasswords
 
 ## Variables d'environnement
-NODEMAILER_EMAIL = "Votre email google"
-NODEMAILER_PW = "App password"
 API_KEY = "votre clé api"
 
 ## router
 ### POST
 #### /mailer
 request header:
-- api_key
-- passwdd
-- 
+- mailerKey
+- from
+- authpass
+- service
 
