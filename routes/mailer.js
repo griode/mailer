@@ -11,7 +11,7 @@ router.post('/', async function (req, res) {
     const service = req.headers.service || null
 
     if (apiKey == null || apiKey != process.env.API_KEY) {
-      return res.status(401).send('Your are not authorized')
+      return res.status(401).send('Your are not authorized, your api is not valide')
     }
 
     if (from == null || authPass == null || service == null) {
